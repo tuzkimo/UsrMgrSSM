@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: tuzkimo
-  Date: 2017-03-17
-  Time: 14:41
+  Date: 2017-03-21
+  Time: 17:16
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -10,19 +10,21 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>users</title>
+    <title>User Manager</title>
+    <link href="<c:url value="/style/main.css"/>" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h2>Users</h2>
-    <table>
-        <thead>
+    <div class="main">
+        <h2 class="title"><span>User Manager</span></h2>
+        <table class="tab">
+            <thead>
             <tr>
                 <th>id</th>
                 <th>name</th>
                 <th>description</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             <c:forEach var="user" items="${users}">
                 <tr>
                     <td>${user.id}</td>
@@ -30,7 +32,8 @@
                     <td>${user.description}</td>
                 </tr>
             </c:forEach>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

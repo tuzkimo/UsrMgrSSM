@@ -13,17 +13,21 @@ import java.util.List;
  * Created by tuzkimo on 2017-03-17.
  */
 @Controller
-@RequestMapping("/users")
+@RequestMapping
 public class UserController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping
-    public String list(Model model) {
+    public String index(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
-        return "users/list";
+        return "index";
     }
 
 }
