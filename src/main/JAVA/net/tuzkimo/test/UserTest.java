@@ -2,6 +2,7 @@ package net.tuzkimo.test;
 
 import net.tuzkimo.model.User;
 import net.tuzkimo.service.UserService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 
 /**
+ * 用户测试类
  * Created by tuzkimo on 2017-03-17.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,6 +32,24 @@ public class UserTest {
     public void testGetAllUsers() {
         List<User> users = userService.getAllUsers();
         System.out.println(users);
+    }
+
+    @Test
+    public void testAddUser() throws Exception {
+        User user = new User("Steve Curry", "sc123456", "PG");
+        Assert.assertTrue(userService.addUser(user) > 0);
+    }
+
+    @Test
+    public void testEditUser() throws Exception {
+        User user = new User("Steve Curry", "sc123456", "Kid");
+        user.setId(6);
+        Assert.assertTrue(userService.editUser(user) > 0);
+    }
+
+    @Test
+    public void testDeleteUserById() throws Exception {
+        Assert.assertTrue(userService.deleteUserById(7) > 0);
     }
 
 }

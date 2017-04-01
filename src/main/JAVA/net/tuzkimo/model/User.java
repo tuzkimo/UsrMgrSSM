@@ -1,6 +1,7 @@
 package net.tuzkimo.model;
 
 /**
+ * 用户实体
  * Created by tuzkimo on 2017-03-16.
  */
 public class User {
@@ -9,6 +10,20 @@ public class User {
     private String name;
     private String password;
     private String description;
+
+    public User() {
+    }
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public User(String name, String password, String description) {
+        this.name = name;
+        this.password = password;
+        this.description = description;
+    }
 
     public int getId() {
         return id;
