@@ -47,9 +47,10 @@ table {
 }
 
 .tab td, .tab th {
-    height: 26px;
-    line-height: 26px;
+    height: 36px;
+    line-height: 36px;
     padding-left: 5px;
+    text-align: center;
 }
 
 /*link*/

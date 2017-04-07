@@ -14,16 +14,16 @@ import java.util.List;
  */
 public interface UserMapper {
 
-    @Select("SELECT id, name, description FROM user")
+    @Select("SELECT id, name, password, description, photo FROM user")
     List<User> getAllUsers();
 
-    @Select("SELECT id, name, description FROM user WHERE id = #{id}")
+    @Select("SELECT id, name, password, description, photo FROM user WHERE id = #{id}")
     User getUserById(int id);
 
     @Insert("INSERT INTO user (name, password, description) VALUES (#{name}, #{password}, #{description})")
     Integer addUser(User user);
 
-    @Update("UPDATE user SET name = #{name}, password = #{password}, description = #{description} WHERE id = #{id}")
+    @Update("UPDATE user SET name = #{name}, password = #{password}, description = #{description}, photo = #{photo} WHERE id = #{id}")
     Integer updateUser(User user);
 
     @Delete("DELETE FROM user WHERE id = #{id}")

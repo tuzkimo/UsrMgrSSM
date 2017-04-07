@@ -24,4 +24,11 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--通用文件解释器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="maxUploadSize" value="1073741824"/>
+        <property name="maxInMemorySize" value="1048576"/>
+    </bean>
+
 </beans>
