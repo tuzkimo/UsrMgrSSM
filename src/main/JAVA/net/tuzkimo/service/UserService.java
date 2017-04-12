@@ -14,6 +14,12 @@ public interface UserService {
 
     List<User> getAllUsers();
 
+    // 获取用户信息并分页
+    List<User> getUsersPaper(Integer pageNo, Integer size);
+
+    // 获取用户数量
+    Integer getUsersCount();
+
     Integer addUser(User user);
 
     Integer editUser(User user);

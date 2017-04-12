@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.util.List;
 
 /**
  * 用户控制器
@@ -31,9 +30,29 @@ public class UserController {
     }
 
     @RequestMapping
-    public String index(Model model) {
-        List<User> users = userService.getAllUsers();
-        model.addAttribute("users", users);
+    public String index(Model model, @RequestParam(required = false, defaultValue = "1") Integer pageNo) {
+        Integer size = 5;
+        Integer usersCount = userService.getUsersCount();
+        Integer pages;
+
+        // 计算分页数
+        if (usersCount % size == 0) {
+            pages = usersCount / size;
+        } else {
+            pages = (usersCount / size) + 1;
+        }
+
+        // 控制分页边界
+        if (pageNo < 1) {
+            pageNo = 1;
+        }
+        if (pageNo > pages) {
+            pageNo = pages;
+        }
+
+        model.addAttribute("pageNo", pageNo);
+        model.addAttribute("users", userService.getUsersPaper(pageNo, size));
+        model.addAttribute("pages", pages);
         return "index";
     }
 

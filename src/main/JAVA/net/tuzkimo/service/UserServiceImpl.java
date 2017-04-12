@@ -29,6 +29,17 @@ public class UserServiceImpl implements UserService {
         return userMapper.getAllUsers();
     }
 
+    // 获取用户信息并分页
+    public List<User> getUsersPaper(Integer pageNo, Integer size) {
+        Integer skip = (pageNo - 1) * size;
+        return userMapper.getUsersPaper(skip, size);
+    }
+
+    // 获取用户数量
+    public Integer getUsersCount() {
+        return userMapper.getUsersCount();
+    }
+
     public Integer addUser(User user) {
         return userMapper.addUser(user);
     }

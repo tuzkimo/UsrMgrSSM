@@ -1,10 +1,7 @@
 package net.tuzkimo.dao;
 
 import net.tuzkimo.model.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -16,6 +13,14 @@ public interface UserMapper {
 
     @Select("SELECT id, name, password, description, photo FROM user")
     List<User> getAllUsers();
+
+    // 获取用户信息并分页
+    @Select("SELECT id, name, password, description, photo FROM user LIMIT #{skip}, #{size}")
+    List<User> getUsersPaper(@Param("skip") Integer skip, @Param("size") Integer size);
+
+    // 获取用户总数
+    @Select("SELECT COUNT(id) FROM user")
+    Integer getUsersCount();
 
     @Select("SELECT id, name, password, description, photo FROM user WHERE id = #{id}")
     User getUserById(int id);

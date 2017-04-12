@@ -53,6 +53,10 @@ table {
     text-align: center;
 }
 
+.tab td img {
+    height: 36px;
+}
+
 /*link*/
 a {
     text-decoration: none;
@@ -91,4 +95,33 @@ fieldset {
 fieldset legend {
     margin-left: 10px;
     font-size: 16px;
+}
+
+/*error*/
+.error {
+    color: red;
+}
+
+/*pagination*/
+
+.pagination a {
+    display: block;
+    float: left;
+    padding: 2px 7px;
+    margin-right: 5px;
+    text-align: center;
+    color: #006ac1;
+    border: 1px solid #006ac1;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    color: white;
+    background: orangered;
+    border: 1px solid orangered;
+}
+
+.current {
+    color: white !important;
+    background: #006ac1;
 }

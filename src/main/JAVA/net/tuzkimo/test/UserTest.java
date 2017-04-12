@@ -35,6 +35,19 @@ public class UserTest {
     }
 
     @Test
+    public void testGetUsersPaper() throws Exception {
+        Integer pageNo = 1;
+        Integer size = 2;
+        List<User> users = userService.getUsersPaper(pageNo, size);
+        System.out.println(users);
+    }
+
+    @Test
+    public void testGetUsersCount() throws Exception {
+        Assert.assertTrue(userService.getUsersCount() == 5);
+    }
+
+    @Test
     public void testAddUser() throws Exception {
         User user = new User("Steve Curry", "sc123456", "PG");
         Assert.assertTrue(userService.addUser(user) > 0);

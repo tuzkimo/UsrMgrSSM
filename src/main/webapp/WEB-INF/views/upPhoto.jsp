@@ -33,9 +33,9 @@
             </p>
         </fieldset>
     </form>
-    <p style="color: red">${message}</p>
+    <p class="error">${message}</p>
     <p>
-        <a class="abtn" href="/">Return</a>
+        <a class="abtn" href="<c:url value="/"/>">Return</a>
     </p>
 </div>
 </body>
