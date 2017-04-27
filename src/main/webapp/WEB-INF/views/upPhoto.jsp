@@ -29,13 +29,13 @@
                 <label for="photo">Photo: </label><input type="file" name="photo" id="photo"/>
             </p>
             <p>
-                <input type="submit" value="upload"/>
+                <input class="btn out" type="submit" value="upload"/>
             </p>
         </fieldset>
     </form>
     <p class="error">${message}</p>
     <p>
-        <a class="abtn" href="<c:url value="/"/>">Return</a>
+        <a class="abtn out" href="<c:url value="/"/>">Return</a>
     </p>
 </div>
 </body>

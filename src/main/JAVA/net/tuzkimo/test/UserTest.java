@@ -65,4 +65,9 @@ public class UserTest {
         Assert.assertTrue(userService.deleteUserById(7) > 0);
     }
 
+    @Test
+    public void testDeleteUsersByIds() throws Exception {
+        Assert.assertTrue(userService.deleteUsersByIds(new Integer[]{6, 7}) > 0);
+    }
+
 }

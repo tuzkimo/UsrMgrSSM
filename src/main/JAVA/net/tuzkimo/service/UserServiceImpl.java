@@ -51,4 +51,13 @@ public class UserServiceImpl implements UserService {
     public Integer deleteUserById(int id) {
         return userMapper.deleteUserById(id);
     }
+
+    public Integer deleteUsersByIds(Integer[] ids) {
+        int effectRows = 0;
+        for (int id : ids) {
+            effectRows += userMapper.deleteUserById(id);
+        }
+        return effectRows;
+    }
+
 }

@@ -16,35 +16,41 @@
 <body>
     <div class="main">
         <h2 class="title"><span>User Manager</span></h2>
-        <table class="tab">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>description</th>
-                <th>photo</th>
-                <th>operation</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="user" items="${users}">
+        <form action="<c:url value="/deletes?pageNo=${pageNo}"/>" method="post">
+
+            <table class="tab">
+                <thead>
                 <tr>
-                    <td>${user.id}</td>
-                    <td>${user.name}</td>
-                    <td>${user.description}</td>
-                    <td><img src="<c:url value="/photos/${user.photo}"/>" title="${user.name}" alt="${user.name}"/></td>
-                    <td>
-                        <a class="abtn" href="<c:url value="/edit/${user.id}"/>">Edit</a>
-                        <a class="abtn" href="<c:url value="/upPhoto/${user.id}"/>">UpPhoto</a>
-                        <a class="abtn" href="<c:url value="/delete/${user.id}"/>">Delete</a>
-                    </td>
+                    <th><label><input type="checkbox" id="chkAll"/></label></th>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>description</th>
+                    <th>photo</th>
+                    <th>operation</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-        <p>
-            <a class="abtn" href="<c:url value="/add"/>">add</a>
-        </p>
+                </thead>
+                <tbody>
+                <c:forEach var="user" items="${users}">
+                    <tr>
+                        <td><label><input type="checkbox" name="id" value="${user.id}"/></label></td>
+                        <td>${user.id}</td>
+                        <td>${user.name}</td>
+                        <td>${user.description}</td>
+                        <td><img src="<c:url value="/photos/${user.photo}"/>" title="${user.name}" alt="${user.name}"/></td>
+                        <td>
+                            <a class="abtn" href="<c:url value="/edit/${user.id}"/>">Edit</a>
+                            <a class="abtn" href="<c:url value="/upPhoto/${user.id}"/>">UpPhoto</a>
+                            <a class="abtn" href="<c:url value="/delete/${user.id}"/>">Delete</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <p>
+                <a class="abtn out" href="<c:url value="/add"/>">add</a>
+                <input type="submit" value="Delete Seleted" class="btn out"/>
+            </p>
+        </form>
         <div class="pagination"></div>
     </div>
     <script src="<c:url value="/scripts/jquery-3.1.1.min.js"/>"></script>
@@ -74,6 +80,10 @@
             }
 
             $('.numlink:eq('+(pageNo-1)+')').addClass('current');
+
+            $('#chkAll').click(function() {
+                $('input[name=id]').prop('checked', this.checked);
+            })
         })
     </script>
 </body>

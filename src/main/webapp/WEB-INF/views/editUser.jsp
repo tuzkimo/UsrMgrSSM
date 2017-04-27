@@ -35,12 +35,12 @@
                 <form:textarea path="description"/>
             </p>
             <p>
-                <input type="submit" value="save">
+                <input class="btn out" type="submit" value="save">
             </p>
         </fieldset>
     </form:form>
     <p>
-        <a class="abtn" href="/">Return</a>
+        <a class="abtn out" href="/">Return</a>
     </p>
 </div>
 </body>

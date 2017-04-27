@@ -87,9 +87,15 @@ public class UserController {
     }
 
     @RequestMapping("/delete/{id}")
-    public String delete(Model model, @PathVariable Integer id) {
+    public String delete(Model model, @PathVariable Integer id, @RequestParam(required = false, defaultValue = "1") Integer pageNo) {
         userService.deleteUserById(id);
-        return "redirect:/";
+        return "redirect:/?pageNo=" + pageNo;
+    }
+
+    @RequestMapping("/deletes")
+    public String deletes(Model model, @RequestParam Integer[] id, @RequestParam(required = false, defaultValue = "1") Integer pageNo) {
+        userService.deleteUsersByIds(id);
+        return "redirect:/?pageNo=" + pageNo;
     }
 
     @RequestMapping("/upPhoto/{id}")
