@@ -40,7 +40,7 @@
                         <td>
                             <a class="abtn" href="<c:url value="/edit/${user.id}"/>">Edit</a>
                             <a class="abtn" href="<c:url value="/upPhoto/${user.id}"/>">UpPhoto</a>
-                            <a class="abtn" href="<c:url value="/delete/${user.id}"/>">Delete</a>
+                            <a class="abtn" href="<c:url value="/delete/${user.id}"><c:param name="pageNo" value="${pageNo}"/></c:url>">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>
