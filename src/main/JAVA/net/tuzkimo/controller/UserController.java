@@ -5,6 +5,7 @@ import net.tuzkimo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.File;
 
 /**
@@ -63,9 +65,11 @@ public class UserController {
     }
 
     @RequestMapping("/addSave")
-    public String addSave(Model model, @ModelAttribute("user") User user) {
-        if (userService.addUser(user) > 0) {
-            return "redirect:/";
+    public String addSave(Model model, @ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            if (userService.addUser(user) > 0) {
+                return "redirect:/";
+            }
         }
         model.addAttribute("user", user);
         return "addUser";
@@ -78,9 +82,11 @@ public class UserController {
     }
 
     @RequestMapping("/editSave")
-    public String editSave(Model model, @ModelAttribute("user") User user) {
-        if (userService.editUser(user) > 0) {
-            return "redirect:/";
+    public String editSave(Model model, @ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            if (userService.editUser(user) > 0) {
+                return "redirect:/";
+            }
         }
         model.addAttribute("user", user);
         return "editUser";

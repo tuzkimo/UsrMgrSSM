@@ -25,14 +25,17 @@
             <p>
                 <label for="name">Name: </label>
                 <form:input path="name"/>
+                <form:errors path="name" cssClass="error"/>
             </p>
             <p>
                 <label for="password">Password: </label>
                 <form:password path="password"/>
+                <form:errors path="password" cssClass="error"/>
             </p>
             <p>
                 <label for="description">Description: </label>
                 <form:textarea path="description"/>
+                <form:errors path="description" cssClass="error"/>
             </p>
             <p>
                 <input class="btn out" type="submit" value="save">
@@ -42,6 +45,8 @@
     <p>
         <a class="abtn out" href="/">Return</a>
     </p>
+    <script src="<c:url value="/scripts/jquery-3.1.1.min.js"/>"></script>
+    <script src="<c:url value="/scripts/validator.js"/>"></script>
 </div>
 </body>
 </html>

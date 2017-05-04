@@ -1,15 +1,37 @@
 package net.tuzkimo.model;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 /**
  * 用户实体
  * Created by tuzkimo on 2017-03-16.
  */
 public class User {
 
+    /*
+     * 编号
+     */
     private int id;
+    /*
+     * 用户名
+     */
+    @Size(min = 1, max = 25, message = "名称必须在 {2} 到 {1} 位之间")
+    @Pattern(regexp = "^[\\w\\u4e00-\\u9fa5]+$", message = "名称只能是中英文字符和数字")
     private String name;
+    /*
+     * 密码
+     */
+    @Size(min = 6, max = 20, message = "密码必须在 {2} 到 {1} 位之间")
     private String password;
+    /*
+     * 描述
+     */
+    @Pattern(regexp = "^[^<>&#]*$", message = "请勿输入 < > & # 等非法字符")
     private String description;
+    /*
+     * 图片
+     */
     private String photo;
 
     public User() {
