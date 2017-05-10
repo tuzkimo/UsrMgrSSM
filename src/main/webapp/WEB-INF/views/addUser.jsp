@@ -24,6 +24,7 @@
                 <label for="name">Name: </label>
                 <form:input path="name"/>
                 <form:errors path="name" cssClass="error"/>
+                <span class="error">${msg}</span>
             </p>
             <p>
                 <label for="password">Password: </label>

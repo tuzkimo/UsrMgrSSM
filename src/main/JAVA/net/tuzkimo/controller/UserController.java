@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * 用户控制器
@@ -29,6 +31,14 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    private boolean nameExist(Model model, String name) {
+        if (userService.getUserByName(name) != null) {
+            model.addAttribute("msg", "用户已存在");
+            return true;
+        }
+        return false;
     }
 
     @RequestMapping
@@ -66,7 +76,7 @@ public class UserController {
 
     @RequestMapping("/addSave")
     public String addSave(Model model, @ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()) {
+        if (!nameExist(model, user.getName()) && !bindingResult.hasErrors()) {
             if (userService.addUser(user) > 0) {
                 return "redirect:/";
             }
@@ -83,7 +93,7 @@ public class UserController {
 
     @RequestMapping("/editSave")
     public String editSave(Model model, @ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()) {
+        if (!nameExist(model, user.getName()) && !bindingResult.hasErrors()) {
             if (userService.editUser(user) > 0) {
                 return "redirect:/";
             }
@@ -151,6 +161,18 @@ public class UserController {
         model.addAttribute("user", user);
         return "upPhoto";
 
+    }
+    /*
+     * 配合 AJAX 进行用户名查重
+     */
+    @RequestMapping("/checkName")
+    public void checkName(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String name = request.getParameter("name");
+        if (userService.getUserByName(name) != null) {
+            response.setContentType("text/html");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().print("用户已存在");
+        }
     }
 
 }

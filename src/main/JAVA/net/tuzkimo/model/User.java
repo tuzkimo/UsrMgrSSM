@@ -17,7 +17,7 @@ public class User {
      * 用户名
      */
     @Size(min = 1, max = 25, message = "名称必须在 {2} 到 {1} 位之间")
-    @Pattern(regexp = "^[\\w\\u4e00-\\u9fa5]+$", message = "名称只能是中英文字符和数字")
+    @Pattern(regexp = "^[\\w\\u4e00-\\u9fa5\\s]+$", message = "名称只能是中英文字符和数字")
     private String name;
     /*
      * 密码

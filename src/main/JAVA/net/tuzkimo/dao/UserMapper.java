@@ -34,4 +34,7 @@ public interface UserMapper {
     @Delete("DELETE FROM user WHERE id = #{id}")
     Integer deleteUserById(int id);
 
+    @Select("SELECT id, name, password, description, photo FROM user WHERE name = #{name}")
+    User getUserByName(String name);
+
 }

@@ -29,6 +29,13 @@ public class UserTest {
     }
 
     @Test
+    public void testGetUserByName() throws Exception {
+        User user = userService.getUserByName("Steve Curry");
+        System.out.println(user);
+        Assert.assertTrue(user != null);
+    }
+
+    @Test
     public void testGetAllUsers() {
         List<User> users = userService.getAllUsers();
         System.out.println(users);

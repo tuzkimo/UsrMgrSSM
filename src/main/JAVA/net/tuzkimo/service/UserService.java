@@ -12,6 +12,8 @@ public interface UserService {
 
     User getUserById(int id);
 
+    User getUserByName(String name);
+
     List<User> getAllUsers();
 
     // 获取用户信息并分页
